@@ -146,7 +146,6 @@ namespace DynamicHomescreen
 						if (Main.random.Next(1, 11) == 1)
 						{
 							int num4 = Main.random.Next(1, 7);
-							num4 = 6;
 							int theapocid = 0;
 							if (num4 == 1)
 							{
