@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Cinematics;
 using Cinematics.Effects;
@@ -50,27 +50,27 @@ namespace DynamicHomescreen
 					GameObject gameObject = GameObject.Find("HomeSceneCustomizations/⬢⬡● CharacterWrapper");
 					if (gameObject != null)
 					{
-						int randa = Main.random.Next(1, 5);
+						int num = Main.random.Next(1, 5);
 						GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(gameObject, new Vector3(-10f, 10f, -85f), Quaternion.identity, gameObject.transform.parent);
 						gameObject2.transform.localScale = new Vector3(1f, 1f, 1f);
 						AnimationWrapper component = gameObject2.GetComponent<AnimationWrapper>();
 						if (component != null)
 						{
-							if (randa == 1)
+							if (num == 1)
 							{
 								component.SwapWithSilhouette(55, true);
 								this.MarshCoroutine = this.MarshalWait(gameObject2);
 								ApplicationController.ApplicationContext.StartCoroutine(this.MarshCoroutine);
 							}
-							else if (randa == 2)
+							else if (num == 2)
 							{
 								component.SwapWithSilhouette(44, true);
 							}
-							else if (randa == 3)
+							else if (num == 3)
 							{
 								component.SwapWithSilhouette(13, true);
 							}
-							else if (randa == 4)
+							else if (num == 4)
 							{
 								component.SwapWithSilhouette(240, true);
 							}
@@ -111,14 +111,15 @@ namespace DynamicHomescreen
 								}
 							}
 						}
-						int num3 = Main.random.Next(1, 6);
+						int num3 = Main.random.Next(1, 7);
 						if (Main.random.Next(1, 11) == 1)
 						{
-							num3 = 6;
+							num3 = 7;
 						}
+						GameObject gameObject4 = null;
 						if (num3 > 1)
 						{
-							GameObject gameObject4 = UnityEngine.Object.Instantiate<GameObject>(gameObject, new Vector3(62f, 41f, 63f), Quaternion.identity, gameObject.transform.parent);
+							gameObject4 = UnityEngine.Object.Instantiate<GameObject>(gameObject, new Vector3(62f, 41f, 63f), Quaternion.identity, gameObject.transform.parent);
 							gameObject4.transform.localScale = new Vector3(-1f, 1f, 1f);
 							AnimationWrapper component3 = gameObject4.GetComponent<AnimationWrapper>();
 							if (component3 != null)
@@ -138,6 +139,9 @@ namespace DynamicHomescreen
 									component3.SwapWithSilhouette(49, true);
 									break;
 								case 6:
+									component3.SwapWithSilhouette(56, true);
+									break;
+								case 7:
 									component3.SwapWithSilhouette(52, true);
 									break;
 								}
@@ -146,50 +150,50 @@ namespace DynamicHomescreen
 						if (Main.random.Next(1, 11) == 1)
 						{
 							int num4 = Main.random.Next(1, 7);
-							int theapocid = 0;
+							int num5 = 0;
 							if (num4 == 1)
 							{
-								theapocid = 41;
+								num5 = 41;
 							}
 							else if (num4 == 2)
 							{
-								theapocid = 42;
+								num5 = 42;
 							}
 							else if (num4 == 3)
 							{
-								theapocid = 47;
+								num5 = 47;
 							}
 							else if (num4 == 4)
 							{
-								theapocid = 50;
+								num5 = 50;
 							}
-							GameObject gameObjec = UnityEngine.Object.Instantiate<GameObject>(gameObject, new Vector3(-45f, 3f, -29.1f), Quaternion.identity, gameObject.transform.parent);
-							gameObjec.transform.localScale = new Vector3(1f, 1f, 1f);
-							AnimationWrapper componen = gameObjec.GetComponent<AnimationWrapper>();
-							if (componen != null)
+							GameObject gameObject5 = UnityEngine.Object.Instantiate<GameObject>(gameObject, new Vector3(-45f, 3f, -29.1f), Quaternion.identity, gameObject.transform.parent);
+							gameObject5.transform.localScale = new Vector3(1f, 1f, 1f);
+							AnimationWrapper component4 = gameObject5.GetComponent<AnimationWrapper>();
+							if (component4 != null)
 							{
-								if (theapocid != 0)
+								if (num5 != 0)
 								{
-									componen.SwapWithSilhouette(theapocid, true);
-									this.ApocCoroutine = this.ApocTransform(gameObjec, theapocid);
+									component4.SwapWithSilhouette(num5, true);
+									this.ApocCoroutine = this.ApocTransform(gameObject5, num5);
 									ApplicationController.ApplicationContext.StartCoroutine(this.ApocCoroutine);
 									return;
 								}
 								if (num4 == 5)
 								{
-									componen.SwapWithSilhouette(48, true);
+									component4.SwapWithSilhouette(48, true);
 									if (num2 != 3)
 									{
-										this.SKCoroutine = this.SKWait(gameObjec, gameObject);
+										this.SKCoroutine = this.SKWait(gameObject5, gameObject, num3, gameObject4);
 										ApplicationController.ApplicationContext.StartCoroutine(this.SKCoroutine);
 									}
 								}
 								if (num4 == 6)
 								{
-									componen.SwapWithSilhouette(51, true);
+									component4.SwapWithSilhouette(51, true);
 									if (num2 != 3)
 									{
-										this.WerewolfCoroutine = this.WerewolfWait(gameObjec, gameObject);
+										this.WerewolfCoroutine = this.WerewolfWait(gameObject5, gameObject, num3, gameObject4);
 										ApplicationController.ApplicationContext.StartCoroutine(this.WerewolfCoroutine);
 									}
 								}
@@ -227,7 +231,7 @@ namespace DynamicHomescreen
 			yield break;
 		}
 
-		// Token: 0x06000092 RID: 146
+		// Token: 0x06000008 RID: 8
 		public IEnumerator<WaitForSeconds> ApocTransform(GameObject theapoc, int apocid)
 		{
 			int TransformAnim = 0;
@@ -270,13 +274,24 @@ namespace DynamicHomescreen
 					component = null;
 					component = null;
 					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
 				}
 				yield return null;
 			}
 			yield break;
 		}
 
-		// Token: 0x06000166 RID: 358
+		// Token: 0x06000009 RID: 9
 		public IEnumerator<WaitForSeconds> WitchLaugh(GameObject thewitch)
 		{
 			int LaughAnim = 0;
@@ -297,145 +312,283 @@ namespace DynamicHomescreen
 					component = null;
 					component = null;
 					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
 				}
 				yield return null;
 			}
 			yield break;
 		}
 
-		// Token: 0x060001D1 RID: 465
-		public IEnumerator<WaitForSeconds> SKWait(GameObject thesk, GameObject theplr)
+		// Token: 0x06000071 RID: 113
+		public IEnumerator<WaitForSeconds> SKWait(GameObject thesk, GameObject theplr, int thefloatnum, GameObject thefloatguy)
 		{
 			int KillAnim = 0;
 			float startTime = -72f;
 			while (KillAnim != 1)
 			{
-				yield return new WaitForSeconds(20f);
+				yield return new WaitForSeconds(7f);
 				KillAnim = Main.random.Next(1, 11);
 				if (KillAnim == 1)
 				{
-					AnimationWrapper component = thesk.GetComponent<AnimationWrapper>();
-					if (component != null)
+					AnimationWrapper component3 = thesk.GetComponent<AnimationWrapper>();
+					if (component3 != null)
 					{
 						startTime = Time.time;
 						Debug.Log("set start time");
-						component.BoolOn("isRunning");
+						component3.BoolOn("isRunning");
 					}
 				}
 				yield return null;
 			}
 			if (startTime != -72f)
 			{
-				AnimationWrapper component2 = thesk.GetComponent<AnimationWrapper>();
+				AnimationWrapper component4 = thesk.GetComponent<AnimationWrapper>();
 				AnimationWrapper plrc = theplr.GetComponent<AnimationWrapper>();
 				while (startTime != -72f)
 				{
-					float frac = (Time.time - startTime) / 2.5f;
+					float num = (Time.time - startTime) / 2.5f;
 					Debug.Log(Time.time - startTime);
-					Debug.Log(frac);
-					if (frac > 1f)
+					Debug.Log(num);
+					if (num > 1f)
 					{
-						frac = 1f;
+						num = 1f;
 					}
 					if (thesk.transform.position != new Vector3(30f, 3f, -29.1f))
 					{
-						thesk.transform.position = Vector3.Lerp(new Vector3(-45f, 3f, -29.1f), new Vector3(30f, 3f, -29.1f), frac);
+						thesk.transform.position = Vector3.Lerp(new Vector3(-45f, 3f, -29.1f), new Vector3(30f, 3f, -29.1f), num);
 					}
-					if (thesk.transform.position == new Vector3(30f, 3f, -29.1f) || frac == 1f)
+					if (thesk.transform.position == new Vector3(30f, 3f, -29.1f) || num == 1f)
 					{
-						component2.BoolOff("isRunning");
-						component2.Trigger("Attack");
+						component4.BoolOff("isRunning");
+						component4.Trigger("Attack");
 						theplr.transform.localScale = new Vector3(-1f, 1f, 1f);
-						plrc.Trigger("AwaitDeath");
-						yield return new WaitForSeconds(1.4f);
-						plrc.Trigger("Death");
+						if (thefloatnum != 6)
+						{
+							plrc.Trigger("AwaitDeath");
+							yield return new WaitForSeconds(1.4f);
+						}
+						else
+						{
+							yield return new WaitForSeconds(0.5f);
+							thefloatguy.GetComponent<AnimationWrapper>().BoolOn("isRunning");
+							yield return null;
+							thefloatguy.GetComponent<AnimationWrapper>().BoolOff("isRunning");
+							yield return new WaitForSeconds(0.9f);
+						}
+						if (thefloatnum != 6)
+						{
+							CinematicEffectPlayer cinematicEffectPlayer = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.AttackHits), plrc.transform);
+							plrc.Trigger(cinematicEffectPlayer.playAnimationOnStart);
+							plrc.Trigger("Death");
+						}
+						else
+						{
+							CinematicEffectPlayer cinematicEffectPlayer2 = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), plrc.transform);
+							plrc.Trigger(cinematicEffectPlayer2.playAnimationOnStart);
+						}
 						yield return new WaitForSeconds(1.25f);
-						component2.Trigger("Cinematic_1");
+						if (thefloatnum != 6)
+						{
+							component4.Trigger("Cinematic_1");
+						}
+						else
+						{
+							component4.SwapWithSilhouette(48, true);
+							while (thefloatnum == 6)
+							{
+								yield return new WaitForSeconds(10f);
+								component4.Trigger("Attack");
+								yield return new WaitForSeconds(0.5f);
+								thefloatguy.GetComponent<AnimationWrapper>().BoolOn("isRunning");
+								yield return null;
+								thefloatguy.GetComponent<AnimationWrapper>().BoolOff("isRunning");
+								yield return new WaitForSeconds(0.9f);
+								CinematicEffectPlayer cinematicEffectPlayer3 = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), plrc.transform);
+								plrc.Trigger(cinematicEffectPlayer3.playAnimationOnStart);
+								yield return new WaitForSeconds(1.25f);
+								component4.SwapWithSilhouette(48, true);
+							}
+						}
 						startTime = -72f;
 					}
 					yield return null;
 				}
-				component2 = null;
+				component4 = null;
 				plrc = null;
-				component2 = null;
+				component4 = null;
 				plrc = null;
-				component2 = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
 				plrc = null;
 			}
 			yield break;
 		}
 
-		// Token: 0x060002F8 RID: 760
-		public IEnumerator<WaitForSeconds> WerewolfWait(GameObject theww, GameObject theplr)
+		// Token: 0x06000072 RID: 114
+		public IEnumerator<WaitForSeconds> WerewolfWait(GameObject theww, GameObject theplr, int thefloatnum, GameObject thefloatguy)
 		{
 			int KillAnim = 0;
 			float startTime = -72f;
 			while (KillAnim != 1)
 			{
-				yield return new WaitForSeconds(20f);
+				yield return new WaitForSeconds(7f);
 				KillAnim = Main.random.Next(1, 11);
 				if (KillAnim == 1)
 				{
-					AnimationWrapper component = theww.GetComponent<AnimationWrapper>();
-					if (component != null)
+					AnimationWrapper component3 = theww.GetComponent<AnimationWrapper>();
+					if (component3 != null)
 					{
 						startTime = Time.time;
 						Debug.Log("set start time");
-						component.BoolOn("isRunning");
+						component3.BoolOn("isRunning");
 					}
 				}
 				yield return null;
 			}
 			if (startTime != -72f)
 			{
-				AnimationWrapper component2 = theww.GetComponent<AnimationWrapper>();
+				AnimationWrapper component4 = theww.GetComponent<AnimationWrapper>();
 				AnimationWrapper plrc = theplr.GetComponent<AnimationWrapper>();
 				while (startTime != -72f)
 				{
-					float frac = (Time.time - startTime) / 2.5f;
-					float frac2 = -72f;
-					if (frac > 1f)
+					float num = (Time.time - startTime) / 2.5f;
+					float num2 = -72f;
+					if (num > 1f)
 					{
-						frac = 1f;
+						num = 1f;
 					}
-					if (frac2 == -72f && theww.transform.position != new Vector3(-15f, 3f, -29.1f))
+					if (num2 == -72f && theww.transform.position != new Vector3(-15f, 3f, -29.1f))
 					{
-						theww.transform.position = Vector3.Lerp(new Vector3(-45f, 3f, -29.1f), new Vector3(-15f, 3f, -29.1f), frac);
+						theww.transform.position = Vector3.Lerp(new Vector3(-45f, 3f, -29.1f), new Vector3(-15f, 3f, -29.1f), num);
 					}
-					if (frac == 1f)
+					if (num == 1f)
 					{
-						if (frac2 == -72f)
+						if (num2 == -72f)
 						{
 							theplr.transform.localScale = new Vector3(-1f, 1f, 1f);
-							plrc.Trigger("AwaitDeath");
+							if (thefloatnum != 6)
+							{
+								plrc.Trigger("AwaitDeath");
+							}
 						}
-						frac2 = Time.time - (startTime + 2.5f);
-						if (frac2 > 1f)
+						num2 = Time.time - (startTime + 2.5f);
+						if (num2 > 1f)
 						{
-							frac2 = 1f;
+							num2 = 1f;
 						}
 						if (theww.transform.position != new Vector3(30f, 3f, -29.1f))
 						{
-							theww.transform.position = Vector3.Lerp(new Vector3(-15f, 3f, -29.1f), new Vector3(30f, 3f, -29.1f), frac2);
+							theww.transform.position = Vector3.Lerp(new Vector3(-15f, 3f, -29.1f), new Vector3(30f, 3f, -29.1f), num2);
 						}
 					}
-					if (theww.transform.position == new Vector3(30f, 3f, -29.1f) || frac2 == 1f)
+					if (theww.transform.position == new Vector3(30f, 3f, -29.1f) || num2 == 1f)
 					{
-						component2.BoolOff("isRunning");
-						component2.Trigger("Kill");
+						component4.BoolOff("isRunning");
+						if (thefloatnum == 6)
+						{
+							thefloatguy.GetComponent<AnimationWrapper>().BoolOn("isRunning");
+							yield return null;
+							thefloatguy.GetComponent<AnimationWrapper>().BoolOff("isRunning");
+							yield return new WaitForSeconds(0.65f);
+						}
+						component4.Trigger("Kill");
 						yield return new WaitForSeconds(0.25f);
-						plrc.Trigger("Death");
+						if (thefloatnum != 6)
+						{
+							CinematicEffectPlayer cinematicEffectPlayer = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.AttackHits), plrc.transform);
+							plrc.Trigger(cinematicEffectPlayer.playAnimationOnStart);
+							plrc.Trigger("Death");
+						}
+						else
+						{
+							CinematicEffectPlayer cinematicEffectPlayer2 = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), plrc.transform);
+							plrc.Trigger(cinematicEffectPlayer2.playAnimationOnStart);
+						}
 						yield return new WaitForSeconds(1.25f);
-						component2.Trigger("Cinematic_1");
+						if (thefloatnum != 6)
+						{
+							component4.Trigger("Cinematic_1");
+						}
+						else
+						{
+							component4.SwapWithSilhouette(51, true);
+							while (thefloatnum == 6)
+							{
+								yield return new WaitForSeconds(10f);
+								thefloatguy.GetComponent<AnimationWrapper>().BoolOn("isRunning");
+								yield return null;
+								thefloatguy.GetComponent<AnimationWrapper>().BoolOff("isRunning");
+								yield return new WaitForSeconds(0.65f);
+								component4.Trigger("Kill");
+								yield return new WaitForSeconds(0.25f);
+								CinematicEffectPlayer cinematicEffectPlayer3 = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), plrc.transform);
+								plrc.Trigger(cinematicEffectPlayer3.playAnimationOnStart);
+								yield return new WaitForSeconds(1.25f);
+								component4.SwapWithSilhouette(51, true);
+							}
+						}
 						startTime = -72f;
 					}
 					yield return null;
 				}
-				component2 = null;
+				component4 = null;
 				plrc = null;
-				component2 = null;
+				component4 = null;
 				plrc = null;
-				component2 = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
+				plrc = null;
+				component4 = null;
 				plrc = null;
 			}
 			yield break;
@@ -447,16 +600,16 @@ namespace DynamicHomescreen
 		// Token: 0x04000003 RID: 3
 		public static System.Random random = new System.Random();
 
-		// Token: 0x0400004C RID: 76
+		// Token: 0x04000004 RID: 4
 		public IEnumerator<WaitForSeconds> ApocCoroutine;
 
-		// Token: 0x040000D8 RID: 216
+		// Token: 0x04000005 RID: 5
 		public IEnumerator<WaitForSeconds> WitchCoroutine;
 
-		// Token: 0x0400014D RID: 333
+		// Token: 0x04000006 RID: 6
 		public IEnumerator<WaitForSeconds> SKCoroutine;
 
-		// Token: 0x04000263 RID: 611
+		// Token: 0x04000007 RID: 7
 		public IEnumerator<WaitForSeconds> WerewolfCoroutine;
 	}
 }
