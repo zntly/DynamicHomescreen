@@ -18,6 +18,11 @@ namespace DynamicHomescreen
 		// Token: 0x06000003 RID: 3
 		public void Start()
 		{
+			this.RetributionistPositions.Add(new Vector3(-70f, 3f, -29.7f));
+			this.RetributionistPositions.Add(new Vector3(-50f, 3f, 0f));
+			this.RetributionistPositions.Add(new Vector3(-18f, 3f, 10f));
+			this.RetributionistPositions.Add(new Vector3(14f, 3f, 10f));
+			this.RetributionistPositions.Add(new Vector3(70f, 3f, -30f));
 			Service.Home.ApplicationService.OnSceneLoaded += delegate(SceneType sceneType, LoadSceneMode loadSceneMode)
 			{
 				if (this.MarshCoroutine != null)
@@ -44,6 +49,16 @@ namespace DynamicHomescreen
 				{
 					ApplicationController.ApplicationContext.StopCoroutine(this.WerewolfCoroutine);
 					this.WerewolfCoroutine = null;
+				}
+				if (this.AdmirerCoroutine != null)
+				{
+					ApplicationController.ApplicationContext.StopCoroutine(this.AdmirerCoroutine);
+					this.AdmirerCoroutine = null;
+				}
+				if (this.RetributionistCoroutine != null)
+				{
+					ApplicationController.ApplicationContext.StopCoroutine(this.RetributionistCoroutine);
+					this.RetributionistCoroutine = null;
 				}
 				if (Leo.IsHomeScene())
 				{
@@ -147,9 +162,9 @@ namespace DynamicHomescreen
 								}
 							}
 						}
-						if (Main.random.Next(1, 11) == 1)
+						if (Main.random.Next(1, 5) == 1)
 						{
-							int num4 = Main.random.Next(1, 7);
+							int num4 = Main.random.Next(1, 8);
 							int num5 = 0;
 							if (num4 == 1)
 							{
@@ -197,6 +212,27 @@ namespace DynamicHomescreen
 										ApplicationController.ApplicationContext.StartCoroutine(this.WerewolfCoroutine);
 									}
 								}
+								if (num4 == 7)
+								{
+									component4.SwapWithSilhouette(1, true);
+									if (num2 != 3)
+									{
+										this.AdmirerCoroutine = this.AdmirerProposal(gameObject5, gameObject);
+										ApplicationController.ApplicationContext.StartCoroutine(this.AdmirerCoroutine);
+									}
+								}
+							}
+						}
+						if (Main.random.Next(1, 5) == 1)
+						{
+							GameObject gameObject6 = UnityEngine.Object.Instantiate<GameObject>(gameObject, new Vector3(-70f, 3f, -29.7f), Quaternion.identity, gameObject.transform.parent);
+							gameObject6.transform.localScale = new Vector3(1f, 1f, 1f);
+							AnimationWrapper component5 = gameObject6.GetComponent<AnimationWrapper>();
+							if (component5 != null)
+							{
+								component5.SwapWithSilhouette(15, true);
+								this.RetributionistCoroutine = this.RetributionistDigging(gameObject6);
+								ApplicationController.ApplicationContext.StartCoroutine(this.RetributionistCoroutine);
 							}
 						}
 						return;
@@ -285,6 +321,18 @@ namespace DynamicHomescreen
 					component = null;
 					component = null;
 					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
 				}
 				yield return null;
 			}
@@ -323,13 +371,25 @@ namespace DynamicHomescreen
 					component = null;
 					component = null;
 					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
+					component = null;
 				}
 				yield return null;
 			}
 			yield break;
 		}
 
-		// Token: 0x06000071 RID: 113
+		// Token: 0x0600000A RID: 10
 		public IEnumerator<WaitForSeconds> SKWait(GameObject thesk, GameObject theplr, int thefloatnum, GameObject thefloatguy)
 		{
 			int KillAnim = 0;
@@ -340,19 +400,19 @@ namespace DynamicHomescreen
 				KillAnim = Main.random.Next(1, 11);
 				if (KillAnim == 1)
 				{
-					AnimationWrapper component3 = thesk.GetComponent<AnimationWrapper>();
-					if (component3 != null)
+					AnimationWrapper component5 = thesk.GetComponent<AnimationWrapper>();
+					if (component5 != null)
 					{
 						startTime = Time.time;
 						Debug.Log("set start time");
-						component3.BoolOn("isRunning");
+						component5.BoolOn("isRunning");
 					}
 				}
 				yield return null;
 			}
 			if (startTime != -72f)
 			{
-				AnimationWrapper component4 = thesk.GetComponent<AnimationWrapper>();
+				AnimationWrapper component6 = thesk.GetComponent<AnimationWrapper>();
 				AnimationWrapper plrc = theplr.GetComponent<AnimationWrapper>();
 				while (startTime != -72f)
 				{
@@ -369,8 +429,8 @@ namespace DynamicHomescreen
 					}
 					if (thesk.transform.position == new Vector3(30f, 3f, -29.1f) || num == 1f)
 					{
-						component4.BoolOff("isRunning");
-						component4.Trigger("Attack");
+						component6.BoolOff("isRunning");
+						component6.Trigger("Attack");
 						theplr.transform.localScale = new Vector3(-1f, 1f, 1f);
 						if (thefloatnum != 6)
 						{
@@ -399,15 +459,15 @@ namespace DynamicHomescreen
 						yield return new WaitForSeconds(1.25f);
 						if (thefloatnum != 6)
 						{
-							component4.Trigger("Cinematic_1");
+							component6.Trigger("Cinematic_1");
 						}
 						else
 						{
-							component4.SwapWithSilhouette(48, true);
+							component6.SwapWithSilhouette(48, true);
 							while (thefloatnum == 6)
 							{
 								yield return new WaitForSeconds(10f);
-								component4.Trigger("Attack");
+								component6.Trigger("Attack");
 								yield return new WaitForSeconds(0.5f);
 								thefloatguy.GetComponent<AnimationWrapper>().BoolOn("isRunning");
 								yield return null;
@@ -416,46 +476,70 @@ namespace DynamicHomescreen
 								CinematicEffectPlayer cinematicEffectPlayer3 = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), plrc.transform);
 								plrc.Trigger(cinematicEffectPlayer3.playAnimationOnStart);
 								yield return new WaitForSeconds(1.25f);
-								component4.SwapWithSilhouette(48, true);
+								component6.SwapWithSilhouette(48, true);
 							}
 						}
 						startTime = -72f;
 					}
 					yield return null;
 				}
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
 				plrc = null;
 			}
 			yield break;
 		}
 
-		// Token: 0x06000072 RID: 114
+		// Token: 0x0600000B RID: 11
 		public IEnumerator<WaitForSeconds> WerewolfWait(GameObject theww, GameObject theplr, int thefloatnum, GameObject thefloatguy)
 		{
 			int KillAnim = 0;
@@ -466,19 +550,19 @@ namespace DynamicHomescreen
 				KillAnim = Main.random.Next(1, 11);
 				if (KillAnim == 1)
 				{
-					AnimationWrapper component3 = theww.GetComponent<AnimationWrapper>();
-					if (component3 != null)
+					AnimationWrapper component5 = theww.GetComponent<AnimationWrapper>();
+					if (component5 != null)
 					{
 						startTime = Time.time;
 						Debug.Log("set start time");
-						component3.BoolOn("isRunning");
+						component5.BoolOn("isRunning");
 					}
 				}
 				yield return null;
 			}
 			if (startTime != -72f)
 			{
-				AnimationWrapper component4 = theww.GetComponent<AnimationWrapper>();
+				AnimationWrapper component6 = theww.GetComponent<AnimationWrapper>();
 				AnimationWrapper plrc = theplr.GetComponent<AnimationWrapper>();
 				while (startTime != -72f)
 				{
@@ -514,7 +598,7 @@ namespace DynamicHomescreen
 					}
 					if (theww.transform.position == new Vector3(30f, 3f, -29.1f) || num2 == 1f)
 					{
-						component4.BoolOff("isRunning");
+						component6.BoolOff("isRunning");
 						if (thefloatnum == 6)
 						{
 							thefloatguy.GetComponent<AnimationWrapper>().BoolOn("isRunning");
@@ -522,7 +606,7 @@ namespace DynamicHomescreen
 							thefloatguy.GetComponent<AnimationWrapper>().BoolOff("isRunning");
 							yield return new WaitForSeconds(0.65f);
 						}
-						component4.Trigger("Kill");
+						component6.Trigger("Kill");
 						yield return new WaitForSeconds(0.25f);
 						if (thefloatnum != 6)
 						{
@@ -538,11 +622,11 @@ namespace DynamicHomescreen
 						yield return new WaitForSeconds(1.25f);
 						if (thefloatnum != 6)
 						{
-							component4.Trigger("Cinematic_1");
+							component6.Trigger("Cinematic_1");
 						}
 						else
 						{
-							component4.SwapWithSilhouette(51, true);
+							component6.SwapWithSilhouette(51, true);
 							while (thefloatnum == 6)
 							{
 								yield return new WaitForSeconds(10f);
@@ -550,47 +634,295 @@ namespace DynamicHomescreen
 								yield return null;
 								thefloatguy.GetComponent<AnimationWrapper>().BoolOff("isRunning");
 								yield return new WaitForSeconds(0.65f);
-								component4.Trigger("Kill");
+								component6.Trigger("Kill");
 								yield return new WaitForSeconds(0.25f);
 								CinematicEffectPlayer cinematicEffectPlayer3 = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), plrc.transform);
 								plrc.Trigger(cinematicEffectPlayer3.playAnimationOnStart);
 								yield return new WaitForSeconds(1.25f);
-								component4.SwapWithSilhouette(51, true);
+								component6.SwapWithSilhouette(51, true);
 							}
 						}
 						startTime = -72f;
 					}
 					yield return null;
 				}
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
 				plrc = null;
-				component4 = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
 				plrc = null;
 			}
+			yield break;
+		}
+
+		// Token: 0x06000078 RID: 120
+		public IEnumerator<WaitForSeconds> AdmirerProposal(GameObject theadm, GameObject theplr)
+		{
+			int ProposalAnim = 0;
+			float startTime = -72f;
+			while (ProposalAnim != 1)
+			{
+				yield return new WaitForSeconds(7f);
+				ProposalAnim = Main.random.Next(1, 6);
+				if (ProposalAnim == 1)
+				{
+					AnimationWrapper component5 = theadm.GetComponent<AnimationWrapper>();
+					if (component5 != null)
+					{
+						startTime = Time.time;
+						component5.BoolOn("isRunning");
+					}
+				}
+				yield return null;
+			}
+			if (startTime != -72f)
+			{
+				AnimationWrapper component6 = theadm.GetComponent<AnimationWrapper>();
+				AnimationWrapper plrc = theplr.GetComponent<AnimationWrapper>();
+				while (startTime != -72f)
+				{
+					float num = (Time.time - startTime) / 2.5f;
+					if (num > 1f)
+					{
+						num = 1f;
+					}
+					if (theadm.transform.position != new Vector3(23f, 3f, -29.1f))
+					{
+						theadm.transform.position = Vector3.Lerp(new Vector3(-45f, 3f, -29.1f), new Vector3(23f, 3f, -29.1f), num);
+					}
+					if (theadm.transform.position == new Vector3(23f, 3f, -29.1f) || num == 1f)
+					{
+						component6.BoolOff("isRunning");
+						component6.Trigger("Cinematic_1");
+						theplr.transform.localScale = new Vector3(-1f, 1f, 1f);
+						yield return new WaitForSeconds(3f);
+						if (Main.random.Next(1, 3) == 1)
+						{
+							plrc.Trigger("Victory");
+							component6.Trigger("Cinematic_2");
+						}
+						else
+						{
+							theplr.transform.localScale = new Vector3(1f, 1f, 1f);
+							component6.Trigger("Cinematic_3");
+						}
+						startTime = -72f;
+					}
+					yield return null;
+				}
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+				component6 = null;
+				plrc = null;
+			}
+			yield break;
+		}
+
+		// Token: 0x06000139 RID: 313
+		public IEnumerator<WaitForSeconds> RetributionistDigging(GameObject theret)
+		{
+			AnimationWrapper com = theret.GetComponent<AnimationWrapper>();
+			int posnum = 0;
+			com.Trigger("Victory");
+			yield return new WaitForSeconds(10f);
+			int triesa = 0;
+			while (triesa < 10)
+			{
+				int num4 = triesa;
+				triesa = num4 + 1;
+				if (Main.random.Next(1, 6) == 1)
+				{
+					triesa = 11;
+				}
+				yield return new WaitForSeconds(4f);
+			}
+			com.SwapWithSilhouette(15, true);
+			int num5 = posnum;
+			posnum = num5 + 1;
+			for (;;)
+			{
+				theret.transform.localScale = new Vector3(1f, 1f, 1f);
+				int tries;
+				foreach (Vector3 npos in this.RetributionistPositions)
+				{
+					Vector3 npos;
+					if (posnum != 1 || !(npos != this.RetributionistPositions[posnum]))
+					{
+						float dist = Vector3.Distance(this.RetributionistPositions[posnum - 1], npos);
+						float num6 = 0f;
+						float startTime = Time.time;
+						com.BoolOn("isRunning");
+						while (num6 < 1f)
+						{
+							num6 = (Time.time - startTime) * 20f / dist;
+							if (num6 > 1f)
+							{
+								num6 = 1f;
+							}
+							if (theret.transform.position != npos)
+							{
+								theret.transform.position = Vector3.Lerp(this.RetributionistPositions[posnum - 1], npos, num6);
+							}
+							if (theret.transform.position == npos || num6 == 1f)
+							{
+								com.BoolOff("isRunning");
+								com.Trigger("Victory");
+								yield return new WaitForSeconds(10f);
+								tries = 0;
+								while (tries < 10)
+								{
+									int num7 = tries;
+									tries = num7 + 1;
+									if (Main.random.Next(1, 6) == 1)
+									{
+										tries = 11;
+									}
+									yield return new WaitForSeconds(4f);
+								}
+								com.SwapWithSilhouette(15, true);
+								num5 = posnum;
+								posnum = num5 + 1;
+								if (posnum > this.RetributionistPositions.Count - 1)
+								{
+									posnum = this.RetributionistPositions.Count - 1;
+								}
+							}
+							yield return null;
+						}
+					}
+					npos = default(Vector3);
+				}
+				List<Vector3>.Enumerator enumerator = default(List<Vector3>.Enumerator);
+				theret.transform.localScale = new Vector3(-1f, 1f, 1f);
+				tries = 0;
+				while (tries < this.RetributionistPositions.Count - 1)
+				{
+					int num8 = tries;
+					tries = num8 + 1;
+					Debug.Log(this.RetributionistPositions.Count);
+					Debug.Log(tries);
+					Debug.Log(this.RetributionistPositions.Count - 1 - tries);
+					Vector3 npos = this.RetributionistPositions[this.RetributionistPositions.Count - 1 - tries];
+					float startTime = Vector3.Distance(this.RetributionistPositions[posnum], npos);
+					float num6 = 0f;
+					float dist = Time.time;
+					com.BoolOn("isRunning");
+					while (num6 < 1f)
+					{
+						num6 = (Time.time - dist) * 20f / startTime;
+						if (num6 > 1f)
+						{
+							num6 = 1f;
+						}
+						if (theret.transform.position != npos)
+						{
+							theret.transform.position = Vector3.Lerp(this.RetributionistPositions[posnum], npos, num6);
+						}
+						if (theret.transform.position == npos || num6 == 1f)
+						{
+							com.BoolOff("isRunning");
+							com.Trigger("Victory");
+							yield return new WaitForSeconds(10f);
+							int tries2 = 0;
+							while (tries2 < 10)
+							{
+								int num9 = tries2;
+								tries2 = num9 + 1;
+								if (Main.random.Next(1, 6) == 1)
+								{
+									tries2 = 11;
+								}
+								yield return new WaitForSeconds(4f);
+							}
+							com.SwapWithSilhouette(15, true);
+							num5 = posnum;
+							posnum = num5 - 1;
+							if (posnum == 0)
+							{
+								posnum = 1;
+							}
+						}
+						yield return null;
+					}
+					npos = default(Vector3);
+					npos = default(Vector3);
+					npos = default(Vector3);
+					npos = default(Vector3);
+					npos = default(Vector3);
+					npos = default(Vector3);
+					npos = default(Vector3);
+					npos = default(Vector3);
+					npos = default(Vector3);
+				}
+			}
+			yield break;
 			yield break;
 		}
 
@@ -611,5 +943,14 @@ namespace DynamicHomescreen
 
 		// Token: 0x04000007 RID: 7
 		public IEnumerator<WaitForSeconds> WerewolfCoroutine;
+
+		// Token: 0x0400007E RID: 126
+		public IEnumerator<WaitForSeconds> AdmirerCoroutine;
+
+		// Token: 0x0400015D RID: 349
+		public List<Vector3> RetributionistPositions = new List<Vector3>();
+
+		// Token: 0x040001E1 RID: 481
+		public IEnumerator<WaitForSeconds> RetributionistCoroutine;
 	}
 }
