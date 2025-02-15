@@ -1,9 +1,0 @@
-{
-  "HarmonyId": "synapsium.dynamic.homescreen",
-  "DisplayName": "Dynamic Homescreen",
-  "Authors": [ "Synapsium" ],
-  "Description": "Makes your homescreen livelier (Icon artwork by @kat. on Discord)",
-  "Version": "1.0.0",
-  "RequiredMods": [],
-  "ModLib": false,
-}
