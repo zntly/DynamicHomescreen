@@ -5,5 +5,6 @@
   "Description": "Makes your homescreen livelier (Icon artwork by @kat. on Discord)",
   "Version": "1.0.0",
   "RequiredMods": [],
+  "ConflictingMods": ["JAN.custombackgrounds"],
   "ModLib": false,
 }
