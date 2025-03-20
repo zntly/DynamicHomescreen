@@ -857,7 +857,6 @@ namespace DynamicHomescreen
 							yield return null;
 						}
 					}
-					npos = default(Vector3);
 				}
 				List<Vector3>.Enumerator enumerator = default(List<Vector3>.Enumerator);
 				theret.transform.localScale = new Vector3(-1f, 1f, 1f);

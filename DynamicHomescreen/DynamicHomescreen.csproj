@@ -33,17 +33,20 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+  <PackageReference Include="HarmonyX" Version="2.10.1" />
+    <PackageReference Include="UnityEngine.Modules" Version="2021.3.10" IncludeAssets="compile" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>lib\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="SalemModLoader">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Town of Salem 2\BepInEx\plugins\SalemModLoader.dll</HintPath>
+      <HintPath>lib\SalemModLoader.dll</HintPath>
     </Reference>
     <Reference Include="SkyControllerPP">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Town of Salem 2\SalemModLoader\Mods\SkyControllerPP.dll</HintPath>
+      <HintPath>lib\SkyControllerPP.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
