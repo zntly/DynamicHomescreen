@@ -812,7 +812,6 @@ namespace DynamicHomescreen
 				int tries;
 				foreach (Vector3 npos in this.RetributionistPositions)
 				{
-					Vector3 npos;
 					if (posnum != 1 || !(npos != this.RetributionistPositions[posnum]))
 					{
 						float dist = Vector3.Distance(this.RetributionistPositions[posnum - 1], npos);
