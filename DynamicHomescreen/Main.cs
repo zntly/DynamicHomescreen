@@ -35,6 +35,11 @@ namespace DynamicHomescreen
 					ApplicationController.ApplicationContext.StopCoroutine(this.ApocCoroutine);
 					this.ApocCoroutine = null;
 				}
+				if (this.MayorCoroutine != null)
+				{
+					ApplicationController.ApplicationContext.StopCoroutine(this.MayorCoroutine);
+					this.MayorCoroutine = null;
+				}
 				if (this.WitchCoroutine != null)
 				{
 					ApplicationController.ApplicationContext.StopCoroutine(this.WitchCoroutine);
@@ -102,6 +107,8 @@ namespace DynamicHomescreen
 							{
 								gameObject3 = gameObject;
 								gameObject3.transform.position = new Vector3(-1f, 10f, -75f);
+								this.MayorCoroutine = this.MayorReveal(gameObject3);
+								ApplicationController.ApplicationContext.StartCoroutine(this.MayorCoroutine);
 							}
 							gameObject3.transform.localScale = new Vector3(1f, 1f, 1f);
 							AnimationWrapper component2 = gameObject3.GetComponent<AnimationWrapper>();
@@ -237,7 +244,6 @@ namespace DynamicHomescreen
 						}
 						return;
 					}
-					Debug.Log("Couldn't find character wrapper");
 				}
 			};
 		}
@@ -256,7 +262,7 @@ namespace DynamicHomescreen
 					if (component != null)
 					{
 						component.Trigger("Cinematic_1");
-						if (Utils.IsSkyControllerPP())
+						if (Utils.IsSkyController())
 						{
 							Utils.TempTrib();
 						}
@@ -281,7 +287,6 @@ namespace DynamicHomescreen
 					if (component != null)
 					{
 						CinematicEffectPlayer cinematicEffectPlayer = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), component.transform);
-						Debug.Log(cinematicEffectPlayer);
 						component.Trigger(cinematicEffectPlayer.playAnimationOnStart);
 						int newid;
 						if (apocid == 41)
@@ -302,37 +307,34 @@ namespace DynamicHomescreen
 						}
 						yield return new WaitForSeconds(0.5f);
 						component.SwapWithSilhouette(newid, true);
-						if (Utils.IsSkyControllerPP())
+						if (Utils.IsSkyController())
 						{
 							Utils.TempApoc();
 						}
 					}
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
+				}
+				yield return null;
+			}
+			yield break;
+		}
+
+		public IEnumerator<WaitForSeconds> MayorReveal(GameObject yourCharacter)
+		{
+			int TransformAnim = 0;
+			while (TransformAnim != 1)
+			{
+				yield return new WaitForSeconds(10f);
+				TransformAnim = Main.random.Next(1, 11);
+				if (TransformAnim == 1)
+				{
+					AnimationWrapper component = yourCharacter.GetComponent<AnimationWrapper>();
+					if (component != null)
+					{
+						CinematicEffectPlayer cinematicEffectPlayer = UnityEngine.Object.Instantiate<CinematicEffectPlayer>(Service.Game.Cinematic.GetCinematicAttackEffectPlayerTemplate(CinematicAttackEffect.ClericBubble), component.transform);
+						component.Trigger(cinematicEffectPlayer.playAnimationOnStart);
+						yield return new WaitForSeconds(0.5f);
+						component.SwapWithSilhouette(11, true);
+					}
 				}
 				yield return null;
 			}
@@ -357,32 +359,6 @@ namespace DynamicHomescreen
 						yield return new WaitForSeconds(3.6f);
 						component.SwapWithSilhouette(39, true);
 					}
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
-					component = null;
 				}
 				yield return null;
 			}
@@ -404,7 +380,6 @@ namespace DynamicHomescreen
 					if (component7 != null)
 					{
 						startTime = Time.time;
-						Debug.Log("set start time");
 						component7.BoolOn("isRunning");
 					}
 				}
@@ -417,8 +392,6 @@ namespace DynamicHomescreen
 				while (startTime != -72f)
 				{
 					float num = (Time.time - startTime) / 2.5f;
-					Debug.Log(Time.time - startTime);
-					Debug.Log(num);
 					if (num > 1f)
 					{
 						num = 1f;
@@ -483,58 +456,6 @@ namespace DynamicHomescreen
 					}
 					yield return null;
 				}
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
 			}
 			yield break;
 		}
@@ -554,7 +475,6 @@ namespace DynamicHomescreen
 					if (component7 != null)
 					{
 						startTime = Time.time;
-						Debug.Log("set start time");
 						component7.BoolOn("isRunning");
 					}
 				}
@@ -646,58 +566,6 @@ namespace DynamicHomescreen
 					}
 					yield return null;
 				}
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
 			}
 			yield break;
 		}
@@ -757,30 +625,6 @@ namespace DynamicHomescreen
 					}
 					yield return null;
 				}
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
-				component6 = null;
-				plrc = null;
 			}
 			yield break;
 		}
@@ -864,9 +708,6 @@ namespace DynamicHomescreen
 				{
 					int num10 = tries;
 					tries = num10 + 1;
-					Debug.Log(this.RetributionistPositions.Count);
-					Debug.Log(tries);
-					Debug.Log(this.RetributionistPositions.Count - 1 - tries);
 					Vector3 npos = this.RetributionistPositions[this.RetributionistPositions.Count - 1 - tries];
 					float startTime = Vector3.Distance(this.RetributionistPositions[posnum], npos);
 					float num6 = 0f;
@@ -909,18 +750,8 @@ namespace DynamicHomescreen
 						}
 						yield return null;
 					}
-					npos = default(Vector3);
-					npos = default(Vector3);
-					npos = default(Vector3);
-					npos = default(Vector3);
-					npos = default(Vector3);
-					npos = default(Vector3);
-					npos = default(Vector3);
-					npos = default(Vector3);
-					npos = default(Vector3);
 				}
 			}
-			yield break;
 			yield break;
 		}
 
@@ -933,6 +764,7 @@ namespace DynamicHomescreen
 		// Token: 0x04000004 RID: 4
 		public IEnumerator<WaitForSeconds> ApocCoroutine;
 
+		public IEnumerator<WaitForSeconds> MayorCoroutine;
 		// Token: 0x04000005 RID: 5
 		public IEnumerator<WaitForSeconds> WitchCoroutine;
 

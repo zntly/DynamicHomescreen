@@ -1,5 +1,5 @@
 ﻿using System;
-using SkyControllerPP;
+using DayNight;
 using SML;
 
 namespace DynamicHomescreen
@@ -8,7 +8,7 @@ namespace DynamicHomescreen
 	public static class Utils
 	{
 		// Token: 0x06000064 RID: 100 RVA: 0x00005CC0 File Offset: 0x00003EC0
-		public static bool SkyControllerPPExists()
+		public static bool SkyControllerExists()
 		{
 			if (ModStates.IsEnabled("curtis.day.night.sync"))
 			{
@@ -27,12 +27,12 @@ namespace DynamicHomescreen
 		}
 
 		// Token: 0x06000065 RID: 101 RVA: 0x00005D28 File Offset: 0x00003F28
-		public static bool IsSkyControllerPP()
+		public static bool IsSkyController()
 		{
 			bool result;
 			try
 			{
-				result = Utils.IsSkyControllerPPBypass();
+				result = Utils.IsSkyControllerBypass();
 			}
 			catch
 			{
@@ -42,9 +42,9 @@ namespace DynamicHomescreen
 		}
 
 		// Token: 0x06000066 RID: 102 RVA: 0x000022B1 File Offset: 0x000004B1
-		private static bool IsSkyControllerPPBypass()
+		private static bool IsSkyControllerBypass()
 		{
-			return Utils.SkyControllerPPExists();
+			return Utils.SkyControllerExists();
 		}
 
 		// Token: 0x06000067 RID: 103 RVA: 0x00005D54 File Offset: 0x00003F54
@@ -65,7 +65,7 @@ namespace DynamicHomescreen
 		{
 			try
 			{
-				SkyInfo.Instance.Pest = true;
+				SkyInfo.Instance.Pest = 1;
 				SkyInfo.Instance.UpdateSky();
 			}
 			catch

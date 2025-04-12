@@ -42,8 +42,8 @@
     <Reference Include="SalemModLoader">
       <HintPath>lib\SalemModLoader.dll</HintPath>
     </Reference>
-    <Reference Include="SkyControllerPP">
-      <HintPath>lib\SkyControllerPP.dll</HintPath>
+    <Reference Include="DayNight">
+      <HintPath>lib\DayNight.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
